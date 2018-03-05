@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+
+    var username = string.Empty;
+    var password = string.Empty;
+    var confirmPassword = string.Empty;
+    var errorMessage = string.Empty;
+
+    if (!IsPost) {
+        if (WebSecurity.IsAuthenticated) {
+            errorMessage = "You are already logged in.";
+        }
+    } else {
+        username = Request["username"];
+        password = Request["password"];
+        confirmPassword = Request["confirmPassword"];
+
+        if (password != confirmPassword) {
+            errorMessage = "Passwords do not match.";
+        } else {
+            if (WebSecurity.UserExists(username)) {
+                errorMessage = string.Format("User '{0}' already exists.", username);
+            } else {
+                WebSecurity.CreateUserAndAccount(username, password, null, false);
+                WebSecurity.Login(username, password, true);
+                errorMessage = string.Format("{0} was created.", username);
+            }
+        }
+
+    }
+}
+
+<h1>Register</h1>
+
+<form method="post">
+    <p>
+        @if(!string.IsNullOrEmpty(errorMessage)){
+            <span class="errorMessage">@errorMessage</span>
+        }
+    </p>
+
+    <p>
+        <label for="username">Username (email):</label><br />
+        <input type="text" name="username" id="username" value="@Request["username"]" />
+    </p>
+    <p>
+        <label for="password">Password:</label><br />
+        <input type="password" name="password" id="password" value="" />
+    </p>
+    <p>
+        <label for="confirmPassword">Confirm password:</label><br />
+        <input type="password" name="confirmPassword" id="confirmPassword" value="" />
+    </p>
+
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+</form>

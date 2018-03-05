@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+}
+
+<h1>Home</h1>
+
+<p>This is public information.</p>
+
+@if(WebSecurity.IsAuthenticated) {
+    <p>This is protected information.</p>
+}
+
+@if(Roles.IsUserInRole("Admin")) {
+    <p>This is super protected information.</p>
+}

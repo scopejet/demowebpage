@@ -1,0 +1,26 @@
+﻿@{
+    var id = (string)PageData[0];
+}
+
+<table border="0" cellspacing="2" cellpadding="2">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Date Sent</th>
+        </tr>
+    </thead>
+    <tbody>
+@using (var repo = new ContactLogRepository("Lesson06")) {
+    var counter = 1;
+    foreach (var log in repo.GetAll()) {
+        var cssClass = counter++ % 2 == 0 ? "even" : "odd";
+        <tr class="@cssClass">
+            <td>@log.Name</td>
+            <td><a href="@log.ID/">@log.Subject</a></td>
+            <td>@log.DateSent.ToString("yyyy-MM-dd HH:mm")</td>
+        </tr>
+    }
+}
+    </tbody>
+</table>

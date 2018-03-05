@@ -1,0 +1,22 @@
+﻿@{
+    var id = (string)PageData[0]; //Request.QueryString["id"];
+    var isInvalidId = id == null || !id.IsInt();
+    dynamic message = null;
+
+    if (!isInvalidId) {
+        using (var repo = new ContactLogRepository("Lesson06")) {
+            message = repo.Get(Convert.ToInt32(id));
+        }
+    }
+}
+
+<div>
+@if (isInvalidId || message == null) {
+    <p class="field-validation-error">The specified message cannot be found.</p>
+} else {
+    <p>@message.Name (@message.Email) @message.DateSent</p>
+    <p>@message.Subject</p>
+    <p>@message.Message</p>
+
+}
+</div>

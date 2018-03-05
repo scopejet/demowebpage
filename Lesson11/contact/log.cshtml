@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Contact Log";
+    var id = UrlData[0];
+}
+
+@if (string.IsNullOrEmpty(id)) {
+    @RenderPage("logdisplay.cshtml", id);
+} else {
+    Page.Title = "Contact Message Detail";
+    @RenderPage("contactdetail.cshtml", id);
+}
+

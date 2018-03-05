@@ -125,6 +125,78 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
   var isInvalidId = id == null || !id.IsInt(); // true if ID == null or not integer
   dynamic message = null;
 ```
-## 2.9 Restructuring & Routing For Websites ##
+## 2.9 Restructuring & Routing For Pages ##
 - * Lesson 10 *
+- Simple page that allows input and show records from a table.
 - localhost:1111/contact/log/1
+
+## 2.10 Razor Layouts ##
+```html
+<!-- /contact/success.chtml -->
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Thank You!";
+}
+
+<p>Thanks for submitting your message. <a href="contact.cshtml">Contact us again!</a></p>
+
+
+<!-- /contact/log.chtml -->
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Contact Log";
+    var id = UrlData[0];
+}
+
+@if (string.IsNullOrEmpty(id)) {
+    @RenderPage("logdisplay.cshtml", id);
+} else {
+    Page.Title = "Contact Message Detail";
+    @RenderPage("contactdetail.cshtml", id);
+}
+```
+
+```html
+<!--  Layout.chtml -->
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@Page.Title</title>
+        <style>
+            .field-validation-error { color:  red; }
+            .even { background-color: #e1f3ff;}
+            .odd { background-color:  white; }        
+        </style>
+    </head>
+    <body>
+        @RenderBody()
+    </body>
+</html>
+
+```
+
+## 2.11/2.12 ASP.NET Memberships And Roles For Pages ##
+- *Lesson 12* and *Lesson 13*
+- Simple registration, login, logout and protected areas.
+```csharp
+if (WebSecurity.IsAuthenticated) {
+    <p>Welcome, @WebSecurity.CurrentUserName | <a href="/logout">Logout</a></p>
+}
+```
+- _AppStart.cshtml contains the database schema and ASP.NET will create the table appropriately.
+```razor
+﻿@{
+    WebSecurity.InitializeDatabaseConnection("Lesson12", "UserProfile", "UserID", "Email", false); 
+}
+
+@if(Roles.IsUserInRole("Admin")) {
+    <p>This is super protected information.</p>
+}
+```
+
+
+# Web Forms #
+
+# MVC #

@@ -1,0 +1,63 @@
+﻿@{
+    var db = Database.Open("Lesson12");
+
+    var userItems = db.Query("SELECT Email FROM UserProfile").Select(user => new SelectListItem {
+        Text = user.Email
+    });
+
+    var roleItems = Roles.GetAllRoles().Select(role => new SelectListItem {
+       Text = role 
+    });
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <h1>Edit Roles</h1>
+        <form action="editRole" method="post">
+
+            <p>
+            <label for="roleName">Role Name: </label>
+            @Html.TextBox("roleName")
+            <input type="submit" id="createRole" name="createRole" value="Create Role"/>
+                </p>
+
+            <p>
+            @Html.DropDownList("selectRoleName", roleItems)
+            <input type="submit" id="deleteRole" name="deleteRole" value="Delete Role"/>
+                </p>
+        </form>
+
+        <h1>Assign Roles</h1>
+        <form action="manageUserRole" method="post">
+            <label for="selectUserName">Users: </label>
+            @Html.DropDownList("selectUserName", userItems)
+
+            <label for="selectRoleName">Roles: </label>
+            @Html.DropDownList("selectRoleName", roleItems)
+            <input type="submit" id="addUserRole" name="addUserRole" value="Add User Role" />
+            <input type="submit" id="removeUserRole" name="removeUserRole" value="Delete User Role" />
+
+        </form>
+
+        <h1>Role Assignments</h1>
+
+        <ul>
+            @foreach(var role in Roles.GetAllRoles()) {
+                <li>@role
+                    <ul>
+                        @foreach(var user in Roles.GetUsersInRole(role)) {
+                            <li>@user</li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+
+    </body>
+</html>

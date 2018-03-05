@@ -1,0 +1,6 @@
+﻿@{
+    if (!Roles.IsUserInRole("admin")) {
+        Response.Redirect("/");
+    }
+}
+

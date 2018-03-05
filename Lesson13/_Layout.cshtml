@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <header>
+        @{
+            if (WebSecurity.IsAuthenticated) {
+                <p>Welcome, @WebSecurity.CurrentUserName | <a href="/logout">Logout</a></p>
+            } else {
+                <p><a href="/login">Login</a> | <a href="/register">Register</a></p>
+            }
+        }
+       </header>
+
+        @RenderBody()
+    </body>
+</html>
