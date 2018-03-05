@@ -1,0 +1,45 @@
+﻿@{
+    var id = UrlData[0];
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <style>
+            .even { background-color: #e1f3ff;}
+            .odd { background-color:  white; }
+            .field-validation-error { color:  red; }
+        </style>
+    </head>
+    <body>
+        @if (string.IsNullOrEmpty(id)) {
+        <table border="0" cellspacing="2" cellpadding="2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Date Sent</th>
+                </tr>
+            </thead>
+            <tbody>
+        @using (var repo = new ContactLogRepository("Lesson06")) {
+            var counter = 1;
+            foreach (var log in repo.GetAll()) {
+                var cssClass = counter++ % 2 == 0 ? "even" : "odd";
+                <tr class="@cssClass">
+                    <td>@log.Name</td>
+                    <td><a href="@log.ID/">@log.Subject</a></td>
+                    <td>@log.DateSent.ToString("yyyy-MM-dd HH:mm")</td>
+                </tr>
+            }
+        }
+            </tbody>
+        </table>
+        } else {
+            @RenderPage("contactdetail.cshtml", id);
+        }
+    </body>
+</html>

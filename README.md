@@ -1,6 +1,9 @@
 ﻿# example-aspnet-web-pages-webforms-mvc
 https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/introduction
 
+# Additional Notes #
+- [Web Forms, MVC, and Web Pages! Oh my!](https://www.codeproject.com/Articles/665118/Web-Forms-MVC-and-Web-Pages-Oh-my)
+- [Why ASP.NET MVC and MVC vs WebForms ? ( Learn MVC 5 series)](https://www.youtube.com/watch?v=bGpBgDDDVlM)
 
 # ASP.NET PAGES #
 
@@ -122,3 +125,6 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
   var isInvalidId = id == null || !id.IsInt(); // true if ID == null or not integer
   dynamic message = null;
 ```
+## 2.9 Restructuring & Routing For Websites ##
+- * Lesson 10 *
+- localhost:1111/contact/log/1
