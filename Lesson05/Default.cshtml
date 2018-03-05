@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        @{
+
+            foreach (var person in People2.GetPeople(Server.MapPath("people.xml")))
+            {
+                <p>@person.FirstName @person.LastName</p>
+            }
+
+            var People = new People();  // if not static
+            foreach (var person in People.GetPeople(Server.MapPath("people.xml")))
+            {
+                    <p>@person.FirstName @person.LastName</p>
+            }
+        }
+    </body>
+</html>

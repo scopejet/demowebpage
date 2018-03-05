@@ -1,0 +1,15 @@
+﻿@using System.Xml.Linq;
+
+@functions{
+    public static IEnumerable<Person> GetPeople() {
+        var path = Server.MapPath("people.xml");
+
+        var root = XElement.Load(path);
+
+        return from el in root.Elements("person")
+                select new Person() {
+                    FirstName = (string)el.Element("firstName"),
+                    LastName = (string)el.Element("lastName")
+                };
+    }
+}

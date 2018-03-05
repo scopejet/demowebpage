@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<people>
+    <person>
+        <firstName>Jeremy</firstName>
+        <lastName>McPeak</lastName>
+    </person>
+    <person>
+        <firstName>Jeffrey</firstName>
+        <lastName>Way</lastName>
+    </person>
+    <person>
+        <firstName>John</firstName>
+        <lastName>Doe</lastName>
+    </person>
+    <person>
+        <firstName>Johnny</firstName>
+        <lastName>Bravo</lastName>
+    </person>
+</people>
