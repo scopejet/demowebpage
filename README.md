@@ -6,7 +6,11 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
 - [Why ASP.NET MVC and MVC vs WebForms ? ( Learn MVC 5 series)](https://www.youtube.com/watch?v=bGpBgDDDVlM)
 
 # ASP.NET PAGES #
-- Done in WebMatrix (deprecated) and Visual Studio
+- Done in WebMatrix2 (deprecated) and Visual Studio
+- Web Pages framework, Microsoft's version of dumbing-down ASP.NET
+- Use to create simple old school websites.
+- Web Page framework is a modern take of mixing markup and server side code together.
+
 
 ## 2.2 Introduction To Razor ##
 ```html
@@ -27,9 +31,9 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
     </head>
     <body>
         
-            @if (!string.IsNullOrEmpty(errorMessage)) {
-                <h1>@errorMessage</h1>
-            }
+    @if (!string.IsNullOrEmpty(errorMessage)) {
+        <h1>@errorMessage</h1>
+    }
 ```
 ## 2.3 Namespaces and File Paths ##
 ```xml
@@ -208,13 +212,36 @@ if (WebSecurity.IsAuthenticated) {
 - Web Pages can be found in project.  You just see Web Forms and MVC.
 - Web Pages are apart of Web Sites.  ASP.NET Web Site (Razor v2)
 - *Lesson 14* has a sample Web Sites created from Visual Studio.
+
 ![2.13](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.13.png)
 
 # Web Forms #
 - Done in Visual Studio
+- ======== SKIPPED FOR NOW ========
+
+
 
 # MVC #
 - Done in Visual Studio
+- MVC prioneer by Xerox
+- Easier to maintain and test in today's TDD environment.
+- Model - data representation, its not the data itself - that's the data store, its not the data-access - that's the data-access layer.  It does represent the data.  Model is used by the View to show data to the user.
+- View - The View knows about the Model, but the Model does not know about the View, also responsible of getting data from the user.  Serves as both input and output data.
+- Controller - Glues the Model and View together.  Gets request from the View and gets what it needs from the Model onto the View.  Sometimes even straight to the data-access layer.
+- ASP.NET MVC 4 > Basic
+- Unlike *Web Pages* & *Web Sites* the routing is central to MVC.  And the 2 predecessor methods, the routing is based on the physical file on the file server that handles the request.  MVC app is not file based.  The response from that is sent back to the browser is the result of calling a method on a class.  
+- Below in RouteConfig.cs, we have one route specified named Default with 3 pattern parameters
+	- controller - class
+	- action - method on that controller class
+	- id - any other parameters
 
-## 4.1 Intro to MVC ##
-- 
+```csharp
+// matches: localhost.home/index/10
+// look for HomeController the look for index method and then pass value of 10
+routes.MapRoute(
+    name: "Default",
+    url: "{controller}/{action}/{id}",
+    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }	// if nothing is specified for controller/action/id then use these default and id is optional
+);
+```
+
