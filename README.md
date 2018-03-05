@@ -2,6 +2,8 @@
 https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/introduction
 
 
+# ASP.NET PAGES #
+
 ## 2.2 Introduction To Razor ##
 ```html
 @{
@@ -82,6 +84,41 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
 
 ## 2.4 Methods and Code ##
 - *App_Code* is a special folder within ASP.NET website, you can drop code in here and the data type in here is global within the application and this is not accessible to the client and is compiled.
-- *People.cshtml* is the method style while *People2.cs* is the class style.  The class style is better.
+- *People.cshtml* is the method style (statically typed webpage) while *People2.cs* is the class style.  The class style is better.
 - See lesson 5 folder.
-- 
+
+## 2.5 Form and Data Basics ##
+- *Lesson 6* simple contact form that post to itself and then use `Request` to get the data and store into the database.
+- Also provides a sample database object.
+
+```csharp
+    public IEnumerable<dynamic> GetAll() {
+        return _db.Query("SELECT * FROM ContactLog ORDER BY DateSent DESC");
+    }
+
+	 @using (var repo = new ContactLogRepository("Lesson06")) {
+        var counter = 1;
+        foreach (var log in repo.GetAll()) {
+            var cssClass = counter++ % 2 == 0 ? "even" : "odd";
+            <tr class="@cssClass">
+                <td>@log.Name</td>
+                <td>@log.Subject</td>
+                <td>@log.DateSent.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    }
+```
+## 2.6 Validating Form Input ##
+- *Lesson 7*
+- Interesting way to server side validate.
+
+## 2.7 Security ##
+- *Lesson 8*
+- CSRF and Line 82-97 ASP.NET auto-captures if a input may have HTML in it.
+
+## 2.8 Using The Query String ##
+```csharp
+  var id = Request.QueryString["id"];
+  var isInvalidId = id == null || !id.IsInt(); // true if ID == null or not integer
+  dynamic message = null;
+```

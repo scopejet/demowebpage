@@ -1,0 +1,89 @@
+﻿@{
+    var name = string.Empty;
+    var email = string.Empty;
+    var subject = string.Empty;
+    var message = string.Empty;
+
+    SetupValidation();
+
+    HandlePostRequest();
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <style>
+            .field-validation-error { color:  red; }           
+        </style>
+    </head>
+    <body>
+        <form action="contact.cshtml" method="post">
+            <p>
+                <label for="@Fields.Name">Name:</label>&nbsp;
+                <input type="text" name="@Fields.Name" id="@Fields.Name" value="@name" /> @Html.ValidationMessage(Fields.Name)       
+            </p>
+            <p>
+                <label for="@Fields.Email">Email:</label>&nbsp;
+                <input type="text" name="@Fields.Email" id="@Fields.Email" value="@email" /> @Html.ValidationMessage(Fields.Email)       
+            </p>
+            <p>
+                <label for="@Fields.Subject">Subject:</label>&nbsp;
+                <input type="text" name="@Fields.Subject" id="@Fields.Subject" value="@subject" /> @Html.ValidationMessage(Fields.Subject)     
+            </p>
+            <p>
+                <label for="@Fields.Message">Message:</label> @Html.ValidationMessage(Fields.Message) <br/>
+                <textarea name="@Fields.Message" id="@Fields.Message" cols="40" rows="10">@message</textarea>          
+            </p>
+            <p>
+                <input type="submit" value="Send"/>
+            </p>
+        </form>
+    </body>
+</html>
+
+@functions {
+    private struct Fields {
+        internal static string Name { get; private set; }
+        internal static string Email { get; private set; }
+        internal static string Subject { get; private set; }
+        internal static string Message { get; private set; }
+
+        static Fields() {
+            Name = "txtName";
+            Email = "txtEmail";
+            Subject = "txtSubject";
+            Message = "txtMessage";
+        }
+
+    }
+
+    protected void SetupValidation() {
+        Validation.RequireField(Fields.Name, "Please enter your name.");
+        Validation.Add(Fields.Email,
+            Validator.Regex(@"^[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]{1,50}$", "Please enter a valid email address."),
+            Validator.Required("Please enter your email address.")
+        );
+        Validation.RequireField(Fields.Subject, "Please enter a subject.");
+        Validation.RequireField(Fields.Message, "Please enter a message.");
+    }
+
+    protected void HandlePostRequest() {
+        if (IsPost) {
+            name = Request[Fields.Name];
+            email = Request[Fields.Email];
+            subject = Request[Fields.Subject];
+            message = Request[Fields.Message];
+
+            if (Validation.IsValid()) {
+                using (var repo = new ContactLogRepository("Lesson06")) {
+                    repo.Insert(name, email, subject, message);
+                }
+
+                Response.Redirect("success.cshtml");
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+﻿@{
+    var name = string.Empty;
+    var email = string.Empty;
+    var subject = string.Empty;
+    var message = string.Empty;
+
+    
+    if (IsPost) {
+        name = Request["txtName"];
+        email = Request["txtEmail"];
+        subject = Request["txtSubject"];
+        message = Request["txtMessage"];
+
+        using (var repo = new ContactLogRepository("Lesson06")) {
+            repo.Insert(name, email, subject, message);
+        }
+
+        Response.Redirect("success.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <form action="contact.cshtml" method="post">
+            <p>
+                <label for="txtName">Name:</label>&nbsp;
+                <input type="text" name="txtName" id="txtName" value="@name" />           
+            </p>
+            <p>
+                <label for="txtEmail">Email:</label>&nbsp;
+                <input type="text" name="txtEmail" id="txtEmail" value="@email" />           
+            </p>
+            <p>
+                <label for="txtSubject">Subject:</label>&nbsp;
+                <input type="text" name="txtSubject" id="txtSubject" value="@subject" />           
+            </p>
+            <p>
+                <label for="txtMessage">Message:</label><br/>
+                <textarea name="txtMessage" id="txtMessage" cols="40" rows="10">@message</textarea>          
+            </p>
+            <p>
+                <input type="submit" value="Send"/>
+            </p>
+        </form>
+    </body>
+</html>
