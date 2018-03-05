@@ -1,0 +1,16 @@
+﻿@{
+    var selectUserName = Request["selectUserName"];
+    var selectRoleName = Request["selectRoleName"];
+    var addUserRole = Request["addUserRole"];
+    var removeUserRole = Request["removeUserRole"];
+
+    var isUserInRole = Roles.IsUserInRole(selectUserName, selectRoleName);
+    
+    if (!string.IsNullOrEmpty(addUserRole) && !isUserInRole) {
+        Roles.AddUserToRole(selectUserName, selectRoleName);
+    } else if(!string.IsNullOrEmpty(removeUserRole) && isUserInRole) {
+        Roles.RemoveUserFromRole(selectUserName, selectRoleName);
+    }
+
+    Response.Redirect("/admin/");
+}

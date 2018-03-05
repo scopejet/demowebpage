@@ -1,0 +1,14 @@
+﻿@{
+    var roleName = Request["roleName"];
+    var createRole = Request["createRole"];
+    var deleteRole = Request["deleteRole"];
+    var selectRoleName = Request["selectRoleName"];
+
+    if (!string.IsNullOrEmpty(createRole)) {
+        Roles.CreateRole(roleName);
+    } else if (!string.IsNullOrEmpty(deleteRole)) {
+        Roles.DeleteRole(selectRoleName);
+    }
+
+    Response.Redirect("/admin/");
+}

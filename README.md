@@ -6,6 +6,7 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
 - [Why ASP.NET MVC and MVC vs WebForms ? ( Learn MVC 5 series)](https://www.youtube.com/watch?v=bGpBgDDDVlM)
 
 # ASP.NET PAGES #
+- Done in WebMatrix (deprecated) and Visual Studio
 
 ## 2.2 Introduction To Razor ##
 ```html
@@ -115,6 +116,8 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
 - *Lesson 7*
 - Interesting way to server side validate.
 
+![2.6](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.6.png)
+
 ## 2.7 Security ##
 - *Lesson 8*
 - CSRF and Line 82-97 ASP.NET auto-captures if a input may have HTML in it.
@@ -129,6 +132,8 @@ https://code.tutsplus.com/courses/aspnet-web-pages-web-forms-and-mvc/lessons/int
 - * Lesson 10 *
 - Simple page that allows input and show records from a table.
 - localhost:1111/contact/log/1
+
+![2.9](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.9.png)
 
 ## 2.10 Razor Layouts ##
 ```html
@@ -195,8 +200,21 @@ if (WebSecurity.IsAuthenticated) {
     <p>This is super protected information.</p>
 }
 ```
+![2.11](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.11-2.12.png)
 
+## 2.13 Intro To Visual Studio ##
+- *New Project* and *New Web Sites* are essentially the same thing in that they are ASP.NET application.  However they are handling different during run-time.  A project is compiled, and you put the compiled binary on the server.  The server has to just run the binary and perhaps compile a few other files, the binaries are in memory for about 20 minutes then shutdown and release from memory.  A Web Site is not compiled.  The server compiles and then put in the memory.  And at a low about 20 minutes then release from memoery.
+- Projects are faster but Web Sites allows for flexibility to drop in a file.
+- Web Pages can be found in project.  You just see Web Forms and MVC.
+- Web Pages are apart of Web Sites.  ASP.NET Web Site (Razor v2)
+- *Lesson 14* has a sample Web Sites created from Visual Studio.
+![2.13](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.13.png)
 
 # Web Forms #
+- Done in Visual Studio
 
 # MVC #
+- Done in Visual Studio
+
+## 4.1 Intro to MVC ##
+- 

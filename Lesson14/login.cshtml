@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+
+    var username = string.Empty;
+    var password = string.Empty;
+    var errorMessage = string.Empty;
+
+    if (IsPost) {
+        username = Request["username"];
+        password = Request["password"];
+
+        if (WebSecurity.Login(username, password)) {
+            Response.Redirect("/");
+        } else {
+            errorMessage = "Username and/or password is incorrect.";
+        }
+    }
+}
+
+<h1>Login</h1>
+
+<p>
+    @if(!string.IsNullOrEmpty(errorMessage)){
+        <span class="errorMessage">@errorMessage</span>
+    }
+</p>
+
+@if(WebSecurity.IsAuthenticated){
+    <p>You are currently logged in as @WebSecurity.CurrentUserName. You will need to 
+        <a href="/logout">logout</a> and log back in if you wish to login with a different user.</p>
+} else {
+    <form method="post">
+        <p>
+            <label for="username">Username:</label><br/>
+            <input type="text" name="username" id="username" value="" />
+        </p>
+        <p>
+            <label for="password">Password:</label><br/>
+            <input type="password" name="password" id="password" value="" />
+        </p>   
+        <p>
+            <input type="submit" value="Submit" />
+        </p>   
+           
+        <p>Don't have an account? <a href="/register">Register</a></p>
+        <p><a href="/">Return to home page</a></p>
+           
+    </form>
+}
