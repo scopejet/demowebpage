@@ -1,0 +1,31 @@
+﻿@model ContactMvc.Models.UserRoleData
+
+<h1>Assign Roles</h1>
+
+@using (Html.BeginForm("Index", "Admin1"))
+{
+    @Html.LabelFor(m => m.UserName) 
+    @Html.DropDownListFor(m => m.UserName, Model.UserNames.Select(r => new SelectListItem() { Text = r })) 
+    
+    @Html.LabelFor(m => m.RoleName) 
+    @Html.DropDownListFor(m => m.RoleName, Model.Roles.Select(r => new SelectListItem() { Text = r })) 
+
+    <input type="submit" id="AddUserRole" name="AddUserRole" value="Add User Role" />
+    <input type="submit" id="RemoveUserRole" name="RemoveUserRole" value="Delete User Role" />
+}
+
+<h1>Role Assignments</h1>
+
+<ul>
+    @foreach (var role in Model.Roles)
+    {
+        <li>@role
+            <ul>
+                @foreach (var user in Roles.GetUsersInRole(role))
+                {
+                    <li>@user</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

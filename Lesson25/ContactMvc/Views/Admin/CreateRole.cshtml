@@ -1,0 +1,14 @@
+﻿@model ContactMvc.Models.CreateRoleData
+
+<h1>Edit Roles</h1>
+
+<p>
+    @using (Html.BeginForm("CreateRole", "Admin"))
+    {
+
+        @Html.LabelFor(m => m.RoleToCreate) 
+        @Html.EditorFor(m => m.RoleToCreate) 
+        <input type="submit" value="Create Role" /> @Html.ValidationMessageFor(m => m.RoleToCreate)
+
+    }
+</p>

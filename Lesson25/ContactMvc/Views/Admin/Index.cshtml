@@ -1,0 +1,13 @@
+﻿@model System.Tuple<ContactMvc.Models.CreateRoleData, ContactMvc.Models.DeleteRoleData, ContactMvc.Models.UserRoleData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Html.RenderPartial("CreateRole", Model.Item1);
+
+    Html.RenderPartial("DeleteRole", Model.Item2);
+
+    Html.RenderPartial("AddRemoveUserRole", Model.Item3);        
+}

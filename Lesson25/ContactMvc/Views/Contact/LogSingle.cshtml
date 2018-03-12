@@ -1,0 +1,9 @@
+﻿@model ContactMvc.Models.ContactMessage
+
+@{
+    ViewBag.Title = "Message from " + @Model.Name;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("Message", Model)

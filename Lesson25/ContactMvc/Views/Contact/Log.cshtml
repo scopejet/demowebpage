@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ContactMvc.Models.ContactMessage>
+
+@{
+    ViewBag.Title = "Contact Log";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var item in Model) {
+    @Html.Partial("Message", item) 
+    <p>@Html.ActionLink("Go to message", "Log", new { id = item.ID })</p>
+    <hr />
+    
+}

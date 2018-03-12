@@ -215,7 +215,7 @@ if (WebSecurity.IsAuthenticated) {
 
 ![2.13](https://github.com/sarn1/example-aspnet-web-pages-webforms-mvc/blob/master/Images/2.13.png)
 
-# Web Forms #
+# WEB FORMS #
 - Done in Visual Studio
 - ======== SKIPPED FOR NOW ========
 
@@ -245,3 +245,63 @@ routes.MapRoute(
 );
 ```
 
+## 4/2 Model Binding, Model Validation, And Assorted Tools
+- Lesson 25, uses a simple contact form MVC5 example, good use of seperation of concerns, view the following:
+	- Model/ContactMessage.cs - model binding class with validation and label error code
+	- View/Contact/Index.cshtml - show the error codes
+	- Controller/ContactController.cs - pass binding class to view
+
+```csharp
+
+// in a view
+@Html.ActionLink("Contact Us", "Index", "Contact");
+
+// alternative - which uses the route map in RouteConfig.cs
+@Html.RouteLink("Contact Us", new { controller = "Contact"});
+
+```
+- Create strongly typed view with model binding
+```csharp
+
+// model
+public class ContactMessage {
+	public string Name { get; set; }
+	public string Email { get; set; }
+}
+
+// controller
+public string index (ContactMessage post) {
+return post.Name;
+}
+
+// view
+@model ContactMVC.Models.ContactMessage
+
+```
+- When you have Visual Studio create the view (Right Click on the Controller), make sure it's Razor (CSHTML), Create A Strongly-Typed View, and Reference Script Library.
+- 
+
+```csharp
+public ActionResult Index(ContactMessage post)
+{
+    if (ModelState.IsValid)	// if pass validation
+    {
+	// TempData is extremely temporary to pass modelview data to the successfulmessage controller 
+	// and we can't directly pass the post to it since it's not being called directly.
+	// TempData is a built in datastore.
+
+        TempData["ContactMessage"] = post;	
+	
+		return RedirectToAction("SuccessfulMessage");	// redirect to successful view
+    }
+
+    return View(post);	// return back the post to the same view
+}
+
+public ActionResult SuccessfulMessage()
+{
+    var message = (ContactMessage)TempData["ContactMessage"];	//convert some of the tempdata to modelview
+
+    return View(message);                                  
+}
+```

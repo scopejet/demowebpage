@@ -1,0 +1,7 @@
+﻿@model ContactMvc.Models.ContactMessage
+
+<section>
+    <p>@Html.DisplayFor(modelItem => Model.Name) (@Html.DisplayFor(modelItem => Model.Email)) @Html.DisplayFor(modelItem => Model.DateSent)</p>
+    <p>@Html.DisplayFor(modelItem => Model.Subject)</p>
+    <p>@Html.DisplayFor(modelItem => Model.Message)</p>
+</section>

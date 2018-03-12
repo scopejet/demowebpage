@@ -1,0 +1,33 @@
+﻿@model ContactMvc.Models.Authentication
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@if (WebSecurity.IsAuthenticated)
+{
+    <p>You are currently logged in.</p>
+}
+else
+{
+    <p>@ViewBag.ErrorMessage</p>
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            @Html.LabelFor(m => m.Username) @Html.ValidationMessageFor(m => m.Username)<br />
+            @Html.EditorFor(m => m.Username)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Password) @Html.ValidationMessageFor(m => m.Password)<br />
+            @Html.PasswordFor(m => m.Password)
+        </p>
+        <p>
+            <input type="submit" value="Login" />
+        </p>
+        <p>Don't have an account? @Html.ActionLink("Register", "Register")</p>
+        <p>@Html.RouteLink("Return Home", new { controller = "Home" })</p>
+    }
+}

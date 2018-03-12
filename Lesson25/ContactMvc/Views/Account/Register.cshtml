@@ -1,0 +1,28 @@
+﻿@model ContactMvc.Models.Registration
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+<p>@ViewBag.ErrorMessage</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        @Html.LabelFor(m => m.Username) @Html.ValidationMessageFor(m => m.Username)<br/>
+        @Html.EditorFor(m => m.Username)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Password) @Html.ValidationMessageFor(m => m.Password)<br/>
+        @Html.PasswordFor(m => m.Password)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.ConfirmPassword) @Html.ValidationMessageFor(m => m.ConfirmPassword)<br/>
+        @Html.PasswordFor(m => m.ConfirmPassword)
+    </p>
+    <p>
+        <input type="submit" value="Register"/>
+    </p>
+}

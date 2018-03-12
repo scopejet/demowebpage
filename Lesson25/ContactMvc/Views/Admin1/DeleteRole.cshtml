@@ -1,0 +1,10 @@
+﻿@model ContactMvc.Models.DeleteRoleData
+
+<p>
+    @using (Html.BeginForm("Index", "Admin1"))
+    {
+    
+        @Html.DropDownListFor(m => m.RoleToDelete, Model.Roles.Select(r => new SelectListItem() { Text = r })) 
+        <input type="submit" value="Delete Role" />
+    }
+</p>
