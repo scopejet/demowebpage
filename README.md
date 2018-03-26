@@ -245,7 +245,7 @@ routes.MapRoute(
 );
 ```
 
-## 4/2 Model Binding, Model Validation, And Assorted Tools
+## 4.2 Model Binding, Model Validation, And Assorted Tools
 - Lesson 25, uses a simple contact form MVC5 example, good use of seperation of concerns, view the following:
 	- Model/ContactMessage.cs - model binding class with validation and label error code
 	- View/Contact/Index.cshtml - show the error codes
@@ -305,3 +305,24 @@ public ActionResult SuccessfulMessage()
     return View(message);                                  
 }
 ```
+## 4.3 Display Data with Views ##
+- Lesson on Entity Framework Code-First
+- Use Lesson 25.
+- Objects that interacts with the database are organized under Data, author preference
+- Look at the following files and how they are organized
+	- Controllers/ContactController.cs
+	- Data/ContactDatabase.cs
+	- Model/ContactMessage.cs
+- Use `NonAction` if you want the routing to not use a particular function and not make it not able to route a request.  Good for SEO.
+```csharp
+[NonAction]
+public ActionResult LogList()
+{ }
+```
+- Nullable int and set id to null
+```csharp
+public ActionResult Log(int? id = null){}
+```
+- **Partial Views** are views you can use within other views.  Perfect for re-purposeable code.
+- `Html.Partials("Message", Model)` returns a string and can save the result to a variable if you want or use it with the @ sign prefix to render.
+- `Html.RenderPartial("Message", Model)` renders it right away to the response stream and needs to be in a code-block.

@@ -1,14 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Lesson05\\App_Code",
-    "\\Lesson06\\App_Code",
-    "\\Lesson06\\App_Data",
-    "\\Lesson07\\App_Code",
-    "\\Lesson09\\Contact",
-    "\\Lesson10",
-    "\\Lesson10\\contact"
+    "\\Lesson10\\contact",
+    "\\Lesson25\\ContactMvc",
+    "\\Lesson25\\ContactMvc\\Controllers",
+    "\\Lesson25\\ContactMvc\\Models",
+    "\\Lesson25\\ContactMvc\\Views",
+    "\\Lesson25\\ContactMvc\\Views\\Contact",
+    "\\Lesson25\\ContactMvc\\Views\\Home"
   ],
-  "SelectedNode": "\\Lesson10\\contact\\contactdetail.cshtml",
+  "SelectedNode": "\\Lesson25",
   "PreviewInSolutionExplorer": false
 }
