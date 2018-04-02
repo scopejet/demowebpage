@@ -1,13 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Lesson10\\contact",
     "\\Lesson25\\ContactMvc",
+    "\\Lesson25\\ContactMvc\\App_Data",
     "\\Lesson25\\ContactMvc\\Controllers",
-    "\\Lesson25\\ContactMvc\\Models",
-    "\\Lesson25\\ContactMvc\\Views",
-    "\\Lesson25\\ContactMvc\\Views\\Contact",
-    "\\Lesson25\\ContactMvc\\Views\\Home"
+    "\\Lesson25\\ContactMvc\\Data",
+    "\\Lesson25\\ContactMvc\\Models"
   ],
   "SelectedNode": "\\Lesson25",
   "PreviewInSolutionExplorer": false

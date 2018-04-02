@@ -217,7 +217,8 @@ if (WebSecurity.IsAuthenticated) {
 
 # WEB FORMS #
 - Done in Visual Studio
-- ======== SKIPPED FOR NOW ========
+- Deprecated.
+- Skip learning.
 
 
 
